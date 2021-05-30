@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Similar Chinese Characters</title>
+    <script src="data.js"></script>
+    <script>
+      let split_data = {};
+      let member_data = {};
+      set_data(split_data, member_data);
+      function update() {
+          let ch = document.getElementById("char").value;
+          document.getElementById("includes_itself").innerHTML = "";
+          document.getElementById("includes_part_1").innerHTML = "";
+          document.getElementById("includes_part_2").innerHTML = "";
+          if (ch in member_data) {
+              document.getElementById("includes_itself").innerHTML = "Includes " + ch + ": " + member_data[ch].join("");
+          }
+          if (ch in split_data) {
+              document.getElementById("includes_part_1").innerHTML = "Includes " + split_data[ch][0] + ": " + member_data[split_data[ch][0]].join("");
+              document.getElementById("includes_part_2").innerHTML = "Includes " + split_data[ch][1] + ": " + member_data[split_data[ch][1]].join("");
+          }
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <input type="text" id="char" maxlength="1" oninput="update();">
+    </div>
+    <div id="includes_itself"></div>
+    <div id="includes_part_1"></div>
+    <div id="includes_part_2"></div>
+  </body>
+</html>
+
